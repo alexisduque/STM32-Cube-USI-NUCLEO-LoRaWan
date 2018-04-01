@@ -132,18 +132,25 @@ void SX1272SetXO( uint8_t state )
 }
 void SX1272IoInit( void )
 {
-  GPIO_InitTypeDef initStruct={0};
-  
-  SX1272BoardInit( &BoardCallbacks );
-  
-  initStruct.Mode = GPIO_MODE_IT_RISING;
-  initStruct.Pull = GPIO_PULLDOWN;
-  initStruct.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitTypeDef initStruct={0};
 
-  HW_GPIO_Init( RADIO_DIO_0_PORT, RADIO_DIO_0_PIN, &initStruct );
-  HW_GPIO_Init( RADIO_DIO_1_PORT, RADIO_DIO_1_PIN, &initStruct );
-  HW_GPIO_Init( RADIO_DIO_2_PORT, RADIO_DIO_2_PIN, &initStruct );
-  HW_GPIO_Init( RADIO_DIO_3_PORT, RADIO_DIO_3_PIN, &initStruct );
+    SX1272BoardInit( &BoardCallbacks );
+
+    initStruct.Mode = GPIO_MODE_IT_RISING;
+    initStruct.Pull = GPIO_PULLDOWN;
+    initStruct.Speed = GPIO_SPEED_HIGH;
+
+    HW_GPIO_Init( RADIO_DIO_0_PORT, RADIO_DIO_0_PIN, &initStruct );
+    HW_GPIO_Init( RADIO_DIO_1_PORT, RADIO_DIO_1_PIN, &initStruct );
+    HW_GPIO_Init( RADIO_DIO_2_PORT, RADIO_DIO_2_PIN, &initStruct );
+    HW_GPIO_Init( RADIO_DIO_3_PORT, RADIO_DIO_3_PIN, &initStruct );
+
+    /* Initialize I-NUCLEO-LRWAN1 Antenna IO */
+    initStruct.Mode =GPIO_MODE_OUTPUT_PP;
+    initStruct.Pull = GPIO_NOPULL;
+    initStruct.Speed = GPIO_SPEED_HIGH;
+    HW_GPIO_Init( RADIO_ANT_SWITCH_PORT, RADIO_ANT_SWITCH_PIN, &initStruct );
+    HW_GPIO_Init( RADIO_ANT2_SWITCH_PORT, RADIO_ANT2_SWITCH_PIN, &initStruct );
 }
 
 void SX1272IoIrqInit( DioIrqHandler **irqHandlers )
@@ -240,16 +247,21 @@ void SX1272SetAntSwLowPower( bool status )
 
 void SX1272SetAntSw( uint8_t opMode )
 {
-    switch( opMode )
-    {
+    switch( opMode ) {
     case RFLR_OPMODE_TRANSMITTER:
         SX1272.RxTx = 1;
+        /* Switch the antenna of I-NUCLEO-LRWAN1 in TX mode */
+        HW_GPIO_Write( RADIO_ANT_SWITCH_PORT, RADIO_ANT_SWITCH_PIN, 1);
+        HW_GPIO_Write( RADIO_ANT2_SWITCH_PORT, RADIO_ANT2_SWITCH_PIN, 0);
         break;
     case RFLR_OPMODE_RECEIVER:
     case RFLR_OPMODE_RECEIVER_SINGLE:
     case RFLR_OPMODE_CAD:
     default:
         SX1272.RxTx = 0;
+        /* Switch the antenna of I-NUCLEO-LRWAN1 in RX mode */
+        HW_GPIO_Write( RADIO_ANT_SWITCH_PORT, RADIO_ANT_SWITCH_PIN, 0);
+        HW_GPIO_Write( RADIO_ANT2_SWITCH_PORT, RADIO_ANT2_SWITCH_PIN, 1);
         break;
     }
 }

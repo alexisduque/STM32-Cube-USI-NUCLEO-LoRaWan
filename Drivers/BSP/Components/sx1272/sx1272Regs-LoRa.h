@@ -138,7 +138,7 @@
  */
 #define RFLR_PACONFIG_PASELECT_MASK                 0x7F
 #define RFLR_PACONFIG_PASELECT_PABOOST              0x80
-#define RFLR_PACONFIG_PASELECT_RFO                  0x00 // Default
+#define RFLR_PACONFIG_PASELECT_RFO                  0x80 // Default
 
 #define RFLR_PACONFIG_OUTPUTPOWER_MASK              0xF0
 

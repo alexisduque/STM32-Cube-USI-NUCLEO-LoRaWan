@@ -55,6 +55,7 @@
  * Join requests trials duty cycle.
  */
 #define OVER_THE_AIR_ACTIVATION_DUTYCYCLE           10000  // 10 [s] value in ms
+#define LORAWAN_DUTYCYCLE_ON                        false
 
 #if defined( REGION_EU868 )
 
@@ -65,7 +66,7 @@
  *
  * \remark Please note that ETSI mandates duty cycled transmissions. Use only for test purposes
  */
-#define LORAWAN_DUTYCYCLE_ON                        true
+#define LORAWAN_DUTYCYCLE_ON                        false
 
 #endif
 
