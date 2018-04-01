@@ -1,0 +1,28 @@
+### Keil ###
+# Keil Output directory
+_build
+
+# Keil dependencies & auto-generated files
+*.uvgui*.*
+RTE
+*.scvd
+*.TMP
+
+# JLink Debug files
+JLink*.*
+
+*.crf
+*.d
+*.axf
+*.iex
+*.dependencies*
+*_log.htm
+*.dbgconf
+*.dep 
+*.lst
+*.sct
+*.map
+*.hex
+*.bin
+*.lnp
+
