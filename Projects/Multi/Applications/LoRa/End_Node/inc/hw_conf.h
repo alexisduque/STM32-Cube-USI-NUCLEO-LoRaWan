@@ -124,6 +124,12 @@ Maintainer: Miguel Luis and Gregory Cristian
   #include "mlm32l0xx_hw_conf.h"
 #endif
 
+#ifdef USE_STM32L151_LORYSDK
+  #include "stm32l1xx_hal.h"
+  #include "stm32l1xx_nucleo.h"
+  #include "stm32l1xx_hal_conf.h"
+  #include "stm32l151_hw_conf.h"
+#endif
 /* --------Preprocessor compile swicth------------ */
 /* debug swicthes in debug.h */
 //#define DEBUG

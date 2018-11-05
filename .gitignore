@@ -1,6 +1,7 @@
 ### Keil ###
 # Keil Output directory
 _build
+sx1276mb1las/
 
 # Keil dependencies & auto-generated files
 *.uvgui*.*

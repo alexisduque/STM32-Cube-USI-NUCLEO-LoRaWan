@@ -59,7 +59,7 @@
 /*!
  * CAYENNE_LPP is myDevices Application server.
  */
-//#define CAYENNE_LPP
+#define CAYENNE_LPP
 #define LPP_DATATYPE_DIGITAL_INPUT  0x0
 #define LPP_DATATYPE_DIGITAL_OUTPUT 0x1
 #define LPP_DATATYPE_HUMIDITY       0x68
@@ -229,7 +229,7 @@ static void Send( void )
   uint16_t pressure = 0;
   int16_t temperature = 0;
   uint16_t humidity = 0;
-  uint8_t batteryLevel;
+  uint8_t batteryLevel = 0;
   sensor_t sensor_data;
   
   if ( LORA_JoinStatus () != LORA_SET)
@@ -245,7 +245,7 @@ static void Send( void )
   uint16_t altitudeGps = 0;
 #endif
   
-#ifdef USE_B_L072Z_LRWAN1
+#ifdef USE_B_L072Z_LRWAN1 
   TimerInit( &TxLedTimer, OnTimerLedEvent );
   
   TimerSetValue(  &TxLedTimer, 200);

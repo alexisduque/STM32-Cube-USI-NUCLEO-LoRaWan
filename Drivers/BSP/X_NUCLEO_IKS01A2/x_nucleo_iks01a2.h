@@ -63,6 +63,10 @@ extern "C" {
 #include "stm32l4xx_hal.h"
 #endif
 
+#ifdef USE_STM32L151_LORYSDK
+#include "stm32l1xx_hal.h"
+#endif
+
 #include "accelerometer.h"
 #include "gyroscope.h"
 #include "magnetometer.h"
