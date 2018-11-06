@@ -127,18 +127,38 @@ void HW_Init( void )
     /* Set the Vector Table base location at 0x3000 */
     NVIC_SetVectorTable( NVIC_VectTab_FLASH, 0x3000 );
 #endif
+		
+  GPIO_InitTypeDef  GPIO_InitStruct;
+  
+  /* Enable the GPIO_LED Clock */
+  RFPOWER_GPIO_CLK_ENABLE();
 
-    HW_AdcInit( );
+  /* Configure the GPIO_LED pin */
+    GPIO_InitStruct.Pin = RFPOWER_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  
+    HAL_GPIO_Init(RFPOWER_GPIO_PORT, &GPIO_InitStruct);		
+    HAL_GPIO_WritePin(RFPOWER_GPIO_PORT, RFPOWER_PIN, GPIO_PIN_SET);
+		PRINTF("RF Power Init.\r\n");		
+		
+		
+		
+    vcom_Init( );
+		PRINTF("\r\nuart init\r\n");
+		
+    //HW_AdcInit( );
 
     Radio.IoInit( );
     
     HW_SPI_Init( );
 
-    HW_RTC_Init( );
+    //HW_RTC_Init( );
     
-    vcom_Init( );
+    //vcom_Init( );
     
-    BSP_sensor_Init( );
+    //BSP_sensor_Init( );
 
     McuInitialized = true;
   }

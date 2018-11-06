@@ -69,7 +69,7 @@
 /*!
  * Defines the application data transmission duty cycle. 5s, value in [ms].
  */
-#define APP_TX_DUTYCYCLE                            10000
+#define APP_TX_DUTYCYCLE                            5000
 /*!
  * LoRaWAN Adaptive Data Rate
  * @note Please note that when ADR is enabled the end-device should be static
@@ -88,7 +88,7 @@
 /*!
  * LoRaWAN default endNode class port
  */
-#define LORAWAN_DEFAULT_CLASS                       CLASS_A
+#define LORAWAN_DEFAULT_CLASS                       CLASS_C
 /*!
  * LoRaWAN default confirm state
  */
@@ -178,11 +178,12 @@ int main( void )
   SystemClock_Config();
   
   /* Configure the debug mode*/
-  DBG_Init();
+  //DBG_Init();
   
   /* Configure the hardware*/
   HW_Init();
-  
+  HW_RTC_Init( );
+	
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
   
@@ -381,12 +382,12 @@ static void LORA_RxData( lora_AppData_t *AppData )
       if ( AppLedStateOn == RESET )
       {
         PRINTF("LED OFF\n\r");
-        LED_Off( LED_BLUE ) ; 
+        LED_Off( LED_RDY ) ; 
       }
       else
       {
         PRINTF("LED ON\n\r");
-        LED_On( LED_BLUE ) ; 
+        LED_On( LED_RDY ) ; 
       }
     }
     break;
@@ -396,13 +397,13 @@ static void LORA_RxData( lora_AppData_t *AppData )
     if ( AppLedStateOn == RESET )
     {
       PRINTF("LED OFF\n\r");
-      LED_Off( LED_BLUE ) ; 
+      LED_Off( LED_RDY ) ; 
       
     }
     else
     {
       PRINTF("LED ON\n\r");
-      LED_On( LED_BLUE ) ; 
+      LED_On( LED_RDY ) ; 
     }
     break;
   }

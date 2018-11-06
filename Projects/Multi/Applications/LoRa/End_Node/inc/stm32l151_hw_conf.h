@@ -70,14 +70,14 @@ Maintainer: Miguel Luis and Gregory Cristian
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
-//#define RADIO_DIO_4
+#define RADIO_DIO_4
 //#define RADIO_DIO_5
 
 /* LORA I/O definition */
 
 
-#define RADIO_RESET_PORT                          GPIOA
-#define RADIO_RESET_PIN                           GPIO_PIN_0
+#define RADIO_RESET_PORT                          GPIOC
+#define RADIO_RESET_PIN                           GPIO_PIN_15
 
 #define RADIO_MOSI_PORT                           GPIOA
 #define RADIO_MOSI_PIN                            GPIO_PIN_7
@@ -88,42 +88,43 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define RADIO_SCLK_PORT                           GPIOA
 #define RADIO_SCLK_PIN                            GPIO_PIN_5
 
-#define RADIO_NSS_PORT                            GPIOB
-#define RADIO_NSS_PIN                             GPIO_PIN_6
+#define RADIO_NSS_PORT                            GPIOA
+#define RADIO_NSS_PIN                             GPIO_PIN_4
 
-#define RADIO_DIO_0_PORT                          GPIOA
-#define RADIO_DIO_0_PIN                           GPIO_PIN_10
+#define RADIO_DIO_0_PORT                          GPIOC
+#define RADIO_DIO_0_PIN                           GPIO_PIN_13
 
 #define RADIO_DIO_1_PORT                          GPIOB
-#define RADIO_DIO_1_PIN                           GPIO_PIN_3
+#define RADIO_DIO_1_PIN                           GPIO_PIN_6
 
 #define RADIO_DIO_2_PORT                          GPIOB
-#define RADIO_DIO_2_PIN                           GPIO_PIN_5
+#define RADIO_DIO_2_PIN                           GPIO_PIN_7
 
 #define RADIO_DIO_3_PORT                          GPIOB
-#define RADIO_DIO_3_PIN                           GPIO_PIN_4
+#define RADIO_DIO_3_PIN                           GPIO_PIN_8
 
 #ifdef RADIO_DIO_4 
-#define RADIO_DIO_4_PORT                          GPIOA
+#define RADIO_DIO_4_PORT                          GPIOB
 #define RADIO_DIO_4_PIN                           GPIO_PIN_9
 #endif
 
 #ifdef RADIO_DIO_5 
-#define RADIO_DIO_5_PORT                          GPIOC
-#define RADIO_DIO_5_PIN                           GPIO_PIN_7
+#define RADIO_DIO_5_PORT                          GPIOB
+#define RADIO_DIO_5_PIN                           GPIO_PIN_10
 #endif
 
-#define RADIO_ANT_SWITCH_PORT                     GPIOC
-#define RADIO_ANT_SWITCH_PIN                      GPIO_PIN_1
+#define RADIO_ANT_SWITCH_PORT                  GPIOC //CRF1
+#define RADIO_ANT_SWITCH_PIN                   GPIO_PIN_14
 
-#define BAT_LEVEL_PORT                            GPIOA
-#define BAT_LEVEL_PIN                             GPIO_PIN_4
+#define BAT_LEVEL_PORT                            GPIOB
+#define BAT_LEVEL_PIN                             GPIO_PIN_1
 /*  SPI MACRO redefinition */
 
 #define SPI_CLK_ENABLE()                __HAL_RCC_SPI1_CLK_ENABLE()
 
 
 #define SPI1_AF                          GPIO_AF5_SPI1  
+  
 
 /* ADC MACRO redefinition */
 
@@ -166,9 +167,18 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define __HAL_RCC_DBGMCU_CLK_ENABLE()
 #define __HAL_RCC_DBGMCU_CLK_DISABLE()
 
-#define LED_Toggle( x )
-#define LED_On( x )
-#define LED_Off( x )
+#define LED_Toggle( x )                 BSP_LED_Toggle( x );
+#define LED_On( x )                     BSP_LED_On( x );
+#define LED_Off( x )                    BSP_LED_Off( x );
+
+
+/**
+  * @}
+  */
+#define RFPOWER_PIN                           GPIO_PIN_8
+#define RFPOWER_GPIO_PORT                     GPIOA
+#define RFPOWER_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
+#define RFPOWER_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
 
 #ifdef __cplusplus
 }
