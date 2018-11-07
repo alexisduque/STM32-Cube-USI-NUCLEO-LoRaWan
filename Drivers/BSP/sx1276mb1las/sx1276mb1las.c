@@ -231,7 +231,8 @@ void SX1276SetRfTxPower( int8_t power )
         }
         paConfig = ( paConfig & RF_PACONFIG_OUTPUTPOWER_MASK ) | ( uint8_t )( ( uint16_t )( power + 1 ) & 0x0F );
     }
-    SX1276Write( REG_PACONFIG, paConfig );
+    //SX1276Write( REG_PACONFIG, paConfig );
+		SX1276Write( REG_PACONFIG, 0x7e );
     SX1276Write( REG_PADAC, paDac );
 }
 

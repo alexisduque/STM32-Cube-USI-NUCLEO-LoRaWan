@@ -127,18 +127,38 @@ void HW_Init( void )
     /* Set the Vector Table base location at 0x3000 */
     NVIC_SetVectorTable( NVIC_VectTab_FLASH, 0x3000 );
 #endif
+		
+  GPIO_InitTypeDef  GPIO_InitStruct;
+  
+  /* Enable the GPIO_LED Clock */
+  RFPOWER_GPIO_CLK_ENABLE();
 
-    HW_AdcInit( );
+  /* Configure the GPIO_LED pin */
+    GPIO_InitStruct.Pin = RFPOWER_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  
+    HAL_GPIO_Init(RFPOWER_GPIO_PORT, &GPIO_InitStruct);		
+    HAL_GPIO_WritePin(RFPOWER_GPIO_PORT, RFPOWER_PIN, GPIO_PIN_SET);
+		PRINTF("RF Power Init.\r\n");		
+		
+		
+		
+    vcom_Init( );
+		PRINTF("\r\nuart init\r\n");
+		
+    //HW_AdcInit( );
 
     Radio.IoInit( );
     
     HW_SPI_Init( );
 
-    HW_RTC_Init( );
+    //HW_RTC_Init( );
     
-    vcom_Init( );
+    //vcom_Init( );
     
-    BSP_sensor_Init( );
+    //BSP_sensor_Init( );
 
     McuInitialized = true;
   }
@@ -199,10 +219,10 @@ void HW_GpioInit(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
+//  __HAL_RCC_GPIOE_CLK_ENABLE();
+//  __HAL_RCC_GPIOF_CLK_ENABLE();
+//  __HAL_RCC_GPIOG_CLK_ENABLE();
+//  __HAL_RCC_GPIOH_CLK_ENABLE();
 
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -215,20 +235,20 @@ void HW_GpioInit(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+//  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+//  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+//  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+//  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
 
   /* Disable GPIOs clock */
   __HAL_RCC_GPIOA_CLK_DISABLE();
   __HAL_RCC_GPIOB_CLK_DISABLE();
   __HAL_RCC_GPIOC_CLK_DISABLE();
   __HAL_RCC_GPIOD_CLK_DISABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_DISABLE();
+//  __HAL_RCC_GPIOE_CLK_ENABLE();
+//  __HAL_RCC_GPIOF_CLK_ENABLE();
+//  __HAL_RCC_GPIOG_CLK_ENABLE();
+//  __HAL_RCC_GPIOH_CLK_DISABLE();
 }
 
 /**

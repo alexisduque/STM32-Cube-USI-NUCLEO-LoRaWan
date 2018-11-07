@@ -85,9 +85,9 @@
 /** @defgroup STM32L1XX_NUCLEO_Private_Variables Private Variables
   * @{
   */ 
-GPIO_TypeDef* LED_PORT[LEDn] = {LED2_GPIO_PORT};
+GPIO_TypeDef* LED_PORT[LEDn] = {LED1_GPIO_PORT};
 
-const uint16_t LED_PIN[LEDn] = {LED2_PIN};
+const uint16_t LED_PIN[LEDn] = {LED1_PIN};
 
 GPIO_TypeDef* BUTTON_PORT[BUTTONn]  = {USER_BUTTON_GPIO_PORT}; 
 const uint16_t BUTTON_PIN[BUTTONn]  = {USER_BUTTON_PIN}; 
@@ -221,7 +221,7 @@ void BSP_LED_DeInit(Led_TypeDef Led)
   */
 void BSP_LED_On(Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(LED_PORT[Led], LED_PIN[Led], GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(LED_PORT[Led], LED_PIN[Led], GPIO_PIN_RESET);
 }
 
 /**
@@ -233,7 +233,7 @@ void BSP_LED_On(Led_TypeDef Led)
   */
 void BSP_LED_Off(Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(LED_PORT[Led], LED_PIN[Led], GPIO_PIN_RESET); 
+  HAL_GPIO_WritePin(LED_PORT[Led], LED_PIN[Led], GPIO_PIN_SET); 
 }
 
 /**

@@ -64,9 +64,8 @@
   */
 typedef enum 
 {
-  LED2 = 0,
-
-  LED_GREEN = LED2
+  LED1 = 0,
+  LED_RDY = LED1,
 } Led_TypeDef;
 
 typedef enum 
@@ -81,6 +80,7 @@ typedef enum
   BUTTON_MODE_GPIO = 0,
   BUTTON_MODE_EXTI = 1
 } ButtonMode_TypeDef; 
+
 
 typedef enum 
 { 
@@ -107,19 +107,34 @@ typedef enum
  #define USE_STM32L1xx_NUCLEO
 #endif
   
-/** @defgroup STM32L1XX_NUCLEO_LED LED Constants
-  * @{
-  */
-#define LEDn                             1
+/* --------------------------- LED definition -------------------------------*/
+#define LEDn                               1
 
-#define LED2_PIN                         GPIO_PIN_5
-#define LED2_GPIO_PORT                   GPIOA
-#define LED2_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
-#define LED2_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()  
+#define LED1_PIN                           GPIO_PIN_12
+#define LED1_GPIO_PORT                     GPIOA
+#define LED1_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
+#define LED1_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
 
-#define LEDx_GPIO_CLK_ENABLE(__INDEX__)   do { if((__INDEX__) == 0) LED2_GPIO_CLK_ENABLE();} while(0)
-#define LEDx_GPIO_CLK_DISABLE(__INDEX__)  (((__INDEX__) == 0) ? LED2_GPIO_CLK_DISABLE() : 0)
-
+#define LEDx_GPIO_CLK_ENABLE(__INDEX__)    do { \
+                                                switch( __INDEX__ ) \
+                                                {\
+                                                  case LED1: \
+                                                    LED1_GPIO_CLK_ENABLE();   \
+                                                    break;\
+                                                  default:\
+                                                    break;\
+                                                }\
+                                              } while(0)
+#define LEDx_GPIO_CLK_DISABLE(__INDEX__)   do { \
+                                                switch( __INDEX__ ) \
+                                                {\
+                                                  case LED1: \
+                                                    LED1_GPIO_CLK_DISABLE();   \
+                                                    break;\
+                                                  default:\
+                                                    break;\
+                                                }\
+                                              } while(0)
 /**
   * @}
   */ 
@@ -132,11 +147,12 @@ typedef enum
 /**
   * @brief User push-button
  */
-#define USER_BUTTON_PIN                  GPIO_PIN_13
-#define USER_BUTTON_GPIO_PORT            GPIOC
-#define USER_BUTTON_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOC_CLK_ENABLE()
-#define USER_BUTTON_GPIO_CLK_DISABLE()   __HAL_RCC_GPIOC_CLK_DISABLE()
-#define USER_BUTTON_EXTI_IRQn            EXTI15_10_IRQn
+#define USER_BUTTON_PIN                         GPIO_PIN_1
+#define USER_BUTTON_GPIO_PORT                   GPIOA
+#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()   
+#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()  
+#define USER_BUTTON_EXTI_LINE                   GPIO_PIN_1
+#define USER_BUTTON_EXTI_IRQn                   EXTI1_IRQn
 /* Aliases */
 #define KEY_BUTTON_PIN                   USER_BUTTON_PIN
 #define KEY_BUTTON_GPIO_PORT             USER_BUTTON_GPIO_PORT
