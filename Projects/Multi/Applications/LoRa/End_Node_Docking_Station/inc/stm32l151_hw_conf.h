@@ -76,8 +76,8 @@ Maintainer: Miguel Luis and Gregory Cristian
 /* LORA I/O definition */
 
 
-#define RADIO_RESET_PORT                          GPIOC
-#define RADIO_RESET_PIN                           GPIO_PIN_15
+#define RADIO_RESET_PORT                          GPIOB
+#define RADIO_RESET_PIN                           GPIO_PIN_3
 
 #define RADIO_MOSI_PORT                           GPIOA
 #define RADIO_MOSI_PIN                            GPIO_PIN_7
@@ -91,8 +91,8 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define RADIO_NSS_PORT                            GPIOA
 #define RADIO_NSS_PIN                             GPIO_PIN_4
 
-#define RADIO_DIO_0_PORT                          GPIOC
-#define RADIO_DIO_0_PIN                           GPIO_PIN_13
+#define RADIO_DIO_0_PORT                          GPIOB
+#define RADIO_DIO_0_PIN                           GPIO_PIN_5
 
 #define RADIO_DIO_1_PORT                          GPIOB
 #define RADIO_DIO_1_PIN                           GPIO_PIN_6
@@ -113,11 +113,11 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define RADIO_DIO_5_PIN                           GPIO_PIN_10
 #endif
 
-#define RADIO_ANT_SWITCH_PORT                  GPIOC //CRF1
-#define RADIO_ANT_SWITCH_PIN                   GPIO_PIN_14
+#define RADIO_ANT_SWITCH_PORT                  GPIOB //CRF1
+#define RADIO_ANT_SWITCH_PIN                   GPIO_PIN_4
 
 #define BAT_LEVEL_PORT                            GPIOB
-#define BAT_LEVEL_PIN                             GPIO_PIN_1
+#define BAT_LEVEL_PIN                             GPIO_PIN_0
 /*  SPI MACRO redefinition */
 
 #define SPI_CLK_ENABLE()                __HAL_RCC_SPI1_CLK_ENABLE()
@@ -141,26 +141,26 @@ Maintainer: Miguel Luis and Gregory Cristian
 /* --------------------------- USART HW definition -------------------------------*/
 
 
-#define USARTX                           USART1
-#define USARTX_CLK_ENABLE()              __USART1_CLK_ENABLE();
+#define USARTX                           USART3
+#define USARTX_CLK_ENABLE()              __USART3_CLK_ENABLE();
 #define USARTX_RX_GPIO_CLK_ENABLE()      __GPIOA_CLK_ENABLE()
 #define USARTX_TX_GPIO_CLK_ENABLE()      __GPIOA_CLK_ENABLE() 
 
-#define USARTX_FORCE_RESET()             __USART1_FORCE_RESET()
-#define USARTX_RELEASE_RESET()           __USART1_RELEASE_RESET()
+#define USARTX_FORCE_RESET()             __USART3_FORCE_RESET()
+#define USARTX_RELEASE_RESET()           __USART3_RELEASE_RESET()
 
 
 /* Definition for USARTx Pins */
-#define USARTX_TX_PIN                  GPIO_PIN_9
+#define USARTX_TX_PIN                  GPIO_PIN_2
 #define USARTX_TX_GPIO_PORT            GPIOA  
-#define USARTX_TX_AF                   GPIO_AF7_USART1
-#define USARTX_RX_PIN                  GPIO_PIN_10
+#define USARTX_TX_AF                   GPIO_AF7_USART3
+#define USARTX_RX_PIN                  GPIO_PIN_3
 #define USARTX_RX_GPIO_PORT            GPIOA 
-#define USARTX_RX_AF                   GPIO_AF7_USART1
+#define USARTX_RX_AF                   GPIO_AF7_USART3
 
 /* Definition for USARTx's NVIC */
-#define USARTX_IRQn                      USART1_IRQn
-#define USARTX_IRQHandler                USART1_IRQHandler
+#define USARTX_IRQn                      USART3_IRQn
+#define USARTX_IRQHandler                USART3_IRQHandler
 
 /* --------------------------- DEBUG redefinition -------------------------------*/
 

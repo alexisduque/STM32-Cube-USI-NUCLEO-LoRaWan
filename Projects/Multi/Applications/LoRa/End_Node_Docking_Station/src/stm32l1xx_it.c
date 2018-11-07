@@ -190,7 +190,7 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
-void USART1_IRQHandler( void )
+void USART3_IRQHandler( void )
 {
    vcom_Print( );
 }

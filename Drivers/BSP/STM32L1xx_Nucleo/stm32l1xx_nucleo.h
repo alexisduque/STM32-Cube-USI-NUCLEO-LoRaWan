@@ -66,14 +66,6 @@ typedef enum
 {
   LED1 = 0,
   LED_RDY = LED1,
-  LED2 = 1,
-  LED_LINK =LED2,
-  LED3 = 2,
-  LED_LOW =LED3,
-  LED4 = 3,
-  LED_MID =LED4,
-  LED5 = 4,
-  LED_HIGH =LED5	
 } Led_TypeDef;
 
 typedef enum 
@@ -116,32 +108,12 @@ typedef enum
 #endif
   
 /* --------------------------- LED definition -------------------------------*/
-#define LEDn                               5
+#define LEDn                               1
 
 #define LED1_PIN                           GPIO_PIN_12
 #define LED1_GPIO_PORT                     GPIOA
 #define LED1_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
 #define LED1_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
-
-#define LED2_PIN                           GPIO_PIN_11
-#define LED2_GPIO_PORT                     GPIOA
-#define LED2_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
-#define LED2_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
-
-#define LED3_PIN                           GPIO_PIN_12
-#define LED3_GPIO_PORT                     GPIOB
-#define LED3_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOB_CLK_ENABLE()  
-#define LED3_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOB_CLK_DISABLE()
-
-#define LED4_PIN                           GPIO_PIN_13
-#define LED4_GPIO_PORT                     GPIOB
-#define LED4_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOB_CLK_ENABLE()  
-#define LED4_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOB_CLK_DISABLE()
-
-#define LED5_PIN                           GPIO_PIN_14
-#define LED5_GPIO_PORT                     GPIOB
-#define LED5_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOB_CLK_ENABLE()  
-#define LED5_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOB_CLK_DISABLE()
 
 #define LEDx_GPIO_CLK_ENABLE(__INDEX__)    do { \
                                                 switch( __INDEX__ ) \
@@ -149,18 +121,6 @@ typedef enum
                                                   case LED1: \
                                                     LED1_GPIO_CLK_ENABLE();   \
                                                     break;\
-                                                  case LED2: \
-                                                    LED2_GPIO_CLK_ENABLE();   \
-                                                    break;\
-                                                  case LED3: \
-                                                    LED3_GPIO_CLK_ENABLE();   \
-                                                    break;\
-                                                  case LED4: \
-                                                    LED4_GPIO_CLK_ENABLE();   \
-                                                    break;\
-                                                  case LED5: \
-                                                    LED5_GPIO_CLK_ENABLE();   \
-                                                    break; \
                                                   default:\
                                                     break;\
                                                 }\
@@ -170,18 +130,6 @@ typedef enum
                                                 {\
                                                   case LED1: \
                                                     LED1_GPIO_CLK_DISABLE();   \
-                                                    break;\
-                                                  case LED2: \
-                                                    LED2_GPIO_CLK_DISABLE();   \
-                                                    break;\
-                                                  case LED3: \
-                                                    LED3_GPIO_CLK_DISABLE();   \
-                                                    break;\
-                                                  case LED4: \
-                                                    LED4_GPIO_CLK_DISABLE();   \
-                                                    break;\
-                                                  case LED5: \
-                                                    LED5_GPIO_CLK_DISABLE();   \
                                                     break;\
                                                   default:\
                                                     break;\
@@ -199,12 +147,12 @@ typedef enum
 /**
   * @brief User push-button
  */
-#define USER_BUTTON_PIN                         GPIO_PIN_0
-#define USER_BUTTON_GPIO_PORT                   GPIOB
-#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOB_CLK_ENABLE()   
-#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOB_CLK_DISABLE()  
-#define USER_BUTTON_EXTI_LINE                   GPIO_PIN_2
-#define USER_BUTTON_EXTI_IRQn                   EXTI2_IRQn
+#define USER_BUTTON_PIN                         GPIO_PIN_1
+#define USER_BUTTON_GPIO_PORT                   GPIOA
+#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()   
+#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()  
+#define USER_BUTTON_EXTI_LINE                   GPIO_PIN_1
+#define USER_BUTTON_EXTI_IRQn                   EXTI1_IRQn
 /* Aliases */
 #define KEY_BUTTON_PIN                   USER_BUTTON_PIN
 #define KEY_BUTTON_GPIO_PORT             USER_BUTTON_GPIO_PORT

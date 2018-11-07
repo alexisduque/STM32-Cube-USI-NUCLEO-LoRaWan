@@ -142,7 +142,9 @@ void HW_Init( void )
     HAL_GPIO_Init(RFPOWER_GPIO_PORT, &GPIO_InitStruct);		
     HAL_GPIO_WritePin(RFPOWER_GPIO_PORT, RFPOWER_PIN, GPIO_PIN_SET);
 		PRINTF("RF Power Init.\r\n");		
-		
+
+    BSP_LED_Init(LED_RDY);
+		LED_On(LED_RDY);
 		
 		
     vcom_Init( );
