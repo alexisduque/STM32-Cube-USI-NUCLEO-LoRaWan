@@ -143,19 +143,19 @@ Maintainer: Miguel Luis and Gregory Cristian
 
 #define USARTX                           USART3
 #define USARTX_CLK_ENABLE()              __USART3_CLK_ENABLE();
-#define USARTX_RX_GPIO_CLK_ENABLE()      __GPIOA_CLK_ENABLE()
-#define USARTX_TX_GPIO_CLK_ENABLE()      __GPIOA_CLK_ENABLE() 
+#define USARTX_RX_GPIO_CLK_ENABLE()      __GPIOB_CLK_ENABLE()
+#define USARTX_TX_GPIO_CLK_ENABLE()      __GPIOB_CLK_ENABLE() 
 
 #define USARTX_FORCE_RESET()             __USART3_FORCE_RESET()
 #define USARTX_RELEASE_RESET()           __USART3_RELEASE_RESET()
 
 
 /* Definition for USARTx Pins */
-#define USARTX_TX_PIN                  GPIO_PIN_2
-#define USARTX_TX_GPIO_PORT            GPIOA  
+#define USARTX_TX_PIN                  GPIO_PIN_10
+#define USARTX_TX_GPIO_PORT            GPIOB  
 #define USARTX_TX_AF                   GPIO_AF7_USART3
-#define USARTX_RX_PIN                  GPIO_PIN_3
-#define USARTX_RX_GPIO_PORT            GPIOA 
+#define USARTX_RX_PIN                  GPIO_PIN_11
+#define USARTX_RX_GPIO_PORT            GPIOB 
 #define USARTX_RX_AF                   GPIO_AF7_USART3
 
 /* Definition for USARTx's NVIC */
